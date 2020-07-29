@@ -1,8 +1,10 @@
 import React, {Fragment} from 'react';
 import Board from './Board';
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components';
+import { Normalize } from 'styled-normalize';
 
 const GlobalStyle = createGlobalStyle`
+    @import-normalize;
     body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
@@ -71,6 +73,7 @@ class Game extends React.Component {
       
       return (
         <Fragment>
+            <Normalize/>
             <GlobalStyle/>
             <GameContainer>
                 <GameBoard>
