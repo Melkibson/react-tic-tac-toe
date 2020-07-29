@@ -1,6 +1,7 @@
 import React from 'react';
 import Square from './Square';
 import styled from 'styled-components';
+import {range} from '../utils/Utils'
 
 const BoardRow = styled.div`
     display: grid;
@@ -8,7 +9,10 @@ const BoardRow = styled.div`
 `
 
 const Board = (props) => {
-    let cases = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    // function range(start, end) {
+    //     return Array.from({ length: end - start + 1 }, (_, i) => i)
+    // }
+    let cases = range(0,8);
       return (
         <BoardRow>
         {cases.map((value, index) => {

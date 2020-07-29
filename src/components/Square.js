@@ -12,6 +12,8 @@ const Btn = styled.button `
     font-weight: bold;
     height: 100%;
     width: 100%;
+    background: transparent;
+    border: 0;
 `
 
 const Square = (props) => {
@@ -21,8 +23,6 @@ const Square = (props) => {
           {props.value}
         </Btn>
       </BtnContainer>
-        
-      
     );
 }
 
