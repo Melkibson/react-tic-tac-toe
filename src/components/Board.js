@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const BoardRow = styled.div`
     display: grid;
-    grid-template-columns: 30% 30% 30%; 
+    grid-template-columns: 33.33333333% 33.33333333% 33.33333333%; 
 `
 
 const Board = (props) => {

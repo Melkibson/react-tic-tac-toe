@@ -1,26 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = styled.button `
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
+const BtnContainer = styled.div`
+  height: 200px;
+  width: 200px;
+  background: #fff;
+  border: 1px solid #999;
+`
+const Btn = styled.button `
+    font-size: 164px;
     font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-    width: 34px;
+    height: 100%;
+    width: 100%;
 `
 
 const Square = (props) => {
     return (
-        <Button onClick={props.onClick}>
+      <BtnContainer>
+        <Btn onClick={props.onClick}>
           {props.value}
-        </Button>
+        </Btn>
+      </BtnContainer>
+        
       
     );
 }

@@ -20,8 +20,6 @@ const GameInfo = styled.div`
     margin-left: 20px;
 `;
 
-
-
 class Game extends React.Component {
     constructor(props){
       super(props);
