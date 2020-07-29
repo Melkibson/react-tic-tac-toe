@@ -1,6 +1,5 @@
 import React from 'react';
 import Square from './Square';
-// import BoardRow from './BoardRow';
 import styled from 'styled-components';
 
 const BoardRow = styled.div`
