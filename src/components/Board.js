@@ -9,9 +9,6 @@ const BoardRow = styled.div`
 `
 
 const Board = (props) => {
-    // function range(start, end) {
-    //     return Array.from({ length: end - start + 1 }, (_, i) => i)
-    // }
     let cases = range(0,8);
       return (
         <BoardRow>
@@ -22,7 +19,6 @@ const Board = (props) => {
             onClick={()=> {props.onClick(value)}}
           />)
         })}
-          
         </BoardRow>
       );
     }

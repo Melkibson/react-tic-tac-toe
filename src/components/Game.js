@@ -19,36 +19,43 @@ const Game = () => {
         history:[{
             squares: Array(9).fill(null),
           }],
-          stepNumber: 0,
-          xIsNext: true,
+        stepNumber: 0,
+        xIsNext: true,
     }
     
     const [state, setState] = useState(initialState);
+    
     const history = state.history;
     const current = history[state.stepNumber];
     const winner = calculateWinner(current.squares);
 
-    function handleClick(i){
+    const handleClick = (i) => {
         const history = state.history.slice(0, state.stepNumber + 1);
         const current = history[history.length -1];
         const squares = current.squares.slice();
+        setState({ 
+          history: history.concat([
+            {
+              squares: squares
+            }
+          ]),
+          stepNumber: history.length,
+          xIsNext: !state.xIsNext,
+        });   
+
         if (calculateWinner(squares) || squares[i]) {return;}
         squares[i]= state.xIsNext ? 'X' : 'O';
-        setState({
-        history:history.concat([{
-            squares: squares,
-        }]),
-        stepNumber: history.length,
-        xIsNext: !state.xIsNext,
-        });
-    }
-    function jumpTo(step){
-        setState({
-        stepNumber: step,
-        xIsNext: (step % 2) === 0,
-        })
+        
+             
     }
 
+    const jumpTo = (step) => {
+      setState({
+        history: history,
+        stepNumber: step,
+        xIsNext: (step % 2) === 0,
+      });
+    }
     const moves = history.map((step, move) => {
         const desc = move ? 'Go to move #' + move : 'Go to game start';
         return (
