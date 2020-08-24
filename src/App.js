@@ -6,7 +6,6 @@ import { Normalize } from 'styled-normalize';
 const GlobalStyle = createGlobalStyle`
     body {
     font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
   }
 `
 

@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import {range} from '../utils/Utils'
 
 const BoardRow = styled.div`
-    display: grid;
-    grid-template-columns: 33.33333333% 33.33333333% 33.33333333%; 
+    display: flex;
+    flex-wrap: wrap;
+    width: 606px; 
 `
-
 const Board = (props) => {
     let cases = range(0,8);
       return (

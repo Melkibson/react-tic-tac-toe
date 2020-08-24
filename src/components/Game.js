@@ -14,6 +14,35 @@ const GameInfo = styled.div`
     margin-left: 20px;
 `;
 
+const Background = styled.div`
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: black;
+    opacity: 0.5;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+`
+const Title = styled.h1`
+    color: white;
+    font-size: 35px;
+`
+const Form = styled.form`
+    display: flex;
+    flex-flow: column;
+    
+`
+const Input = styled.input.attrs(({type}) =>({
+    type: type || 'text'
+}))`
+`
+const Label = styled.label`
+    color: white;
+`
+
 const Game = () => {
     const initialState = {
         history:[{
@@ -23,12 +52,21 @@ const Game = () => {
         xIsNext: true,
         clear: false
     }
+  
+  const [playerOne, setPlayerOne] = useState('')
+  const [playerTwo, setPlayerTwo] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    document.querySelector(Background).style.visibility = 'hidden';
+    return [playerOne, playerTwo]
+  }
     
     const [state, setState] = useState(initialState);
     
     const history = state.history;
     const current = history[state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    let winner = calculateWinner(current.squares);
 
     const handleClick = (i) => {
         const history = state.history.slice(0, state.stepNumber + 1);
@@ -66,9 +104,20 @@ const Game = () => {
       })
 
     let status;
-    winner ? status = 'Winner: ' + winner : status = 'Next player: ' + (state.xIsNext ? 'X' : 'O');
+    winner ? status = 'Winner: ' + (winner === 'X' ? winner = playerOne : winner = playerTwo) : status = 'Next player: ' + (state.xIsNext ? playerOne : playerTwo);
 
     return (
+      <>
+      <Background>
+          <Title>Welcome to tic tac toe</Title>
+          <Form onSubmit={handleSubmit}>
+              <Label>Player 1</Label>
+              <Input value={playerOne} onChange={e => setPlayerOne(e.target.value)}/>
+              <Label>Player 2</Label>
+              <Input value={playerTwo} onChange={e => setPlayerTwo(e.target.value)}/>
+              <Input type="submit"/>
+          </Form>
+      </Background>
       <GameContainer>
         <GameBoard>
             <Board 
@@ -78,9 +127,10 @@ const Game = () => {
         </GameBoard>
         <GameInfo>
             <div>{status}</div>
-            <ol>{moves}</ol>
+            <ul>{moves}</ul>
         </GameInfo>
       </GameContainer>
+    </>
     )
 }
 export default Game;
