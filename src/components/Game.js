@@ -17,10 +17,11 @@ const GameInfo = styled.div`
 const Game = () => {
     const initialState = {
         history:[{
-            squares: Array(9).fill(null),
+            squares: [],
           }],
         stepNumber: 0,
         xIsNext: true,
+        clear: false
     }
     
     const [state, setState] = useState(initialState);
@@ -33,6 +34,9 @@ const Game = () => {
         const history = state.history.slice(0, state.stepNumber + 1);
         const current = history[history.length -1];
         const squares = current.squares.slice();
+
+        if (calculateWinner(squares) || squares[i]) {return;}
+        squares[i]= state.xIsNext ? 'X' : 'O';
         setState({ 
           history: history.concat([
             {
@@ -41,28 +45,24 @@ const Game = () => {
           ]),
           stepNumber: history.length,
           xIsNext: !state.xIsNext,
-        });   
-
-        if (calculateWinner(squares) || squares[i]) {return;}
-        squares[i]= state.xIsNext ? 'X' : 'O';
-        
-             
+        });
     }
 
     const jumpTo = (step) => {
       setState({
-        history: history,
+        history: step === 0 ? [{squares:[]}]: history,
         stepNumber: step,
         xIsNext: (step % 2) === 0,
       });
     }
+    
     const moves = history.map((step, move) => {
-        const desc = move ? 'Go to move #' + move : 'Go to game start';
-        return (
-          <li key={move}>
+        const desc = move ? 'Go to move #' + move : 'Go to game start' ;
+          return(
+            <li key={move}>
             <button onClick={() => jumpTo(move)}>{desc}</button>
           </li>
-        )
+          )
       })
 
     let status;
